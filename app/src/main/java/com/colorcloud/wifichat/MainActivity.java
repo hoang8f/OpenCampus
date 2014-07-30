@@ -122,52 +122,76 @@ public class MainActivity extends Activity implements View.OnClickListener {
         FragmentTransaction ft;
         switch (view.getId()) {
             case R.id.button1:
-                if (fragment1 == null) {
-                    fragment1 = new PlaceholderFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putInt(KEY_COLOR_CODE, COLOR_1);
-                    fragment1.setArguments(bundle);
-                }
-                ft = getFragmentManager().beginTransaction();
-                ft.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right, 0, 0);
-                ft.replace(R.id.container, fragment1).commit();
+                showColor1();
+                sendColorMessage(COLOR_1);
                 break;
             case R.id.button2:
-                if (fragment2 == null) {
-                    fragment2 = new PlaceholderFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putInt(KEY_COLOR_CODE, COLOR_2);
-                    fragment2.setArguments(bundle);
-                }
-                ft = getFragmentManager().beginTransaction();
-                ft.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right, 0, 0);
-                ft.replace(R.id.container, fragment2).commit();
+                showColor2();
+                sendColorMessage(COLOR_2);
                 break;
             case R.id.button3:
-                if (fragment3 == null) {
-                    fragment3 = new PlaceholderFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putInt(KEY_COLOR_CODE, COLOR_3);
-                    fragment3.setArguments(bundle);
-                }
-                ft = getFragmentManager().beginTransaction();
-                ft.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right, 0, 0);
-                ft.replace(R.id.container, fragment3).commit();
+                showColor3();
+                sendColorMessage(COLOR_3);
                 break;
             case R.id.button4:
-                if (fragment4 == null) {
-                    fragment4 = new PlaceholderFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putInt(KEY_COLOR_CODE, COLOR_4);
-                    fragment4.setArguments(bundle);
-                }
-                ft = getFragmentManager().beginTransaction();
-                ft.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right, 0, 0);
-                ft.replace(R.id.container, fragment4).commit();
+                showColor4();
+                sendColorMessage(COLOR_4);
                 break;
             default:
                 break;
         }
+    }
+
+    private void showColor4() {
+        FragmentTransaction ft;
+        if (fragment4 == null) {
+            fragment4 = new PlaceholderFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt(KEY_COLOR_CODE, COLOR_4);
+            fragment4.setArguments(bundle);
+        }
+        ft = getFragmentManager().beginTransaction();
+        ft.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right, 0, 0);
+        ft.replace(R.id.container, fragment4).commit();
+    }
+
+    private void showColor3() {
+        FragmentTransaction ft;
+        if (fragment3 == null) {
+            fragment3 = new PlaceholderFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt(KEY_COLOR_CODE, COLOR_3);
+            fragment3.setArguments(bundle);
+        }
+        ft = getFragmentManager().beginTransaction();
+        ft.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right, 0, 0);
+        ft.replace(R.id.container, fragment3).commit();
+    }
+
+    private void showColor2() {
+        FragmentTransaction ft;
+        if (fragment2 == null) {
+            fragment2 = new PlaceholderFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt(KEY_COLOR_CODE, COLOR_2);
+            fragment2.setArguments(bundle);
+        }
+        ft = getFragmentManager().beginTransaction();
+        ft.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right, 0, 0);
+        ft.replace(R.id.container, fragment2).commit();
+    }
+
+    private void showColor1() {
+        FragmentTransaction ft;
+        if (fragment1 == null) {
+            fragment1 = new PlaceholderFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt(KEY_COLOR_CODE, COLOR_1);
+            fragment1.setArguments(bundle);
+        }
+        ft = getFragmentManager().beginTransaction();
+        ft.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right, 0, 0);
+        ft.replace(R.id.container, fragment1).commit();
     }
 
 
@@ -224,6 +248,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
 	    	ConnectionService.getInstance().getHandler().sendMessage(msg);
     	}
     }
+
+    private void sendColorMessage(int colorCode) {
+        // send the chat text in current line to the server
+        String inputMsg = colorCode + "";
+        MessageRow row = new MessageRow(mApp.mDeviceName, inputMsg, null);
+        String jsonMsg = mApp.shiftInsertMessage(row);
+        this.pushOutMessage(jsonMsg);
+    }
     
     /**
      * post send msg to service to handle it in background.
@@ -246,6 +278,25 @@ public class MainActivity extends Activity implements View.OnClickListener {
 //    			if( mChatFrag != null ){
 //    				mChatFrag.appendChatMessage(row);
 //    			}
+                try {
+                    int colorCode = Integer.parseInt(row.mMsg);
+                    switch (colorCode) {
+                        case COLOR_1:
+                            showColor1();
+                            break;
+                        case COLOR_2:
+                            showColor2();
+                            break;
+                        case COLOR_3:
+                            showColor3();
+                            break;
+                        case COLOR_4:
+                            showColor4();
+                            break;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
     		}
     	});
     }

@@ -121,8 +121,8 @@ public class ChatFragment extends ListFragment {
         PTPLog.d(TAG, "onCreate chat msg fragment: devicename : " + mApp.mDeviceName + " : " + getArguments().getString("initMsg"));
         return contentView;
     }
-    
-    @Override 
+
+    @Override
     public void onDestroyView(){ 
     	super.onDestroyView(); 
     	Log.d(TAG, "onDestroyView: ");
