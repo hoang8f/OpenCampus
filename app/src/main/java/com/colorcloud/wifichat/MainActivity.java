@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
@@ -18,27 +19,51 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements View.OnClickListener {
 	
 	public static final String TAG = "PTP_ChatAct";
+
+    public static final String KEY_COLOR_CODE = "COLOR_CODE";
+
+    public static final int COLOR_1 = 1;
+    public static final int COLOR_2 = 2;
+    public static final int COLOR_3 = 3;
+    public static final int COLOR_4 = 4;
+
+    public static final int ANIMATION_POP_CENTER = 1;
+    public static final int ANIMATION_LEFT_TO_RIGHT = 2;
+    public static final int ANIMATION_RIGHT_TO_LEFT = 3;
+
+    Fragment fragment1;
+    Fragment fragment2;
+    Fragment fragment3;
+    Fragment fragment4;
 	
 	WiFiDirectApp mApp = null;
-	ChatFragment mChatFrag = null;
+//	ChatFragment mChatFrag = null;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.chat);
+
+        findViewById(R.id.button1).setOnClickListener(this);
+        findViewById(R.id.button2).setOnClickListener(this);
+        findViewById(R.id.button3).setOnClickListener(this);
+        findViewById(R.id.button4).setOnClickListener(this);
+
 		Intent i = getIntent();
 		String initMsg = i.getStringExtra("FIRST_MSG");
 		
 		mApp = (WiFiDirectApp)getApplication(); 
-		initFragment(initMsg);
+//		initFragment(initMsg);
 	}
 	
 	/**
 	 * init fragement with possible recvd start up message.
 	 */
+
+    /*
 	public void initFragment(String initMsg) {
     	// to add fragments to your activity layout, just specify which viewgroup to place the fragment.
     	final FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -49,10 +74,11 @@ public class MainActivity extends Activity {
     	
     	Log.d(TAG, "initFragment : show chat fragment..." + initMsg);
     	// chat fragment on top, do not do replace, as frag_detail already hard coded in layout.
-    	ft.add(R.id.frag_chat, mChatFrag, "chat_frag");
+    	ft.add(R.id.container, mChatFrag, "chat_frag");
     	ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
     	ft.commit();
     }
+    */
 	
 	@Override
 	public void onResume() {
@@ -90,8 +116,61 @@ public class MainActivity extends Activity {
         //setListAdapter(mAdapter);  // list fragment data adapter
         mAdapter.notifyDataSetChanged();  // notify the attached observer and views to refresh.
 	}
-	
-	
+
+    @Override
+    public void onClick(View view) {
+        FragmentTransaction ft;
+        switch (view.getId()) {
+            case R.id.button1:
+                if (fragment1 == null) {
+                    fragment1 = new PlaceholderFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt(KEY_COLOR_CODE, COLOR_1);
+                    fragment1.setArguments(bundle);
+                }
+                ft = getFragmentManager().beginTransaction();
+                ft.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right, 0, 0);
+                ft.replace(R.id.container, fragment1).commit();
+                break;
+            case R.id.button2:
+                if (fragment2 == null) {
+                    fragment2 = new PlaceholderFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt(KEY_COLOR_CODE, COLOR_2);
+                    fragment2.setArguments(bundle);
+                }
+                ft = getFragmentManager().beginTransaction();
+                ft.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right, 0, 0);
+                ft.replace(R.id.container, fragment2).commit();
+                break;
+            case R.id.button3:
+                if (fragment3 == null) {
+                    fragment3 = new PlaceholderFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt(KEY_COLOR_CODE, COLOR_3);
+                    fragment3.setArguments(bundle);
+                }
+                ft = getFragmentManager().beginTransaction();
+                ft.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right, 0, 0);
+                ft.replace(R.id.container, fragment3).commit();
+                break;
+            case R.id.button4:
+                if (fragment4 == null) {
+                    fragment4 = new PlaceholderFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt(KEY_COLOR_CODE, COLOR_4);
+                    fragment4.setArguments(bundle);
+                }
+                ft = getFragmentManager().beginTransaction();
+                ft.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right, 0, 0);
+                ft.replace(R.id.container, fragment4).commit();
+                break;
+            default:
+                break;
+        }
+    }
+
+
     /**
      * list view adapter for this activity when testing without using fragment!
      * deprecated, as we should always use fragment, template.
@@ -164,10 +243,42 @@ public class MainActivity extends Activity {
     	runOnUiThread(new Runnable() {
     		@Override public void run() {
     			Log.d(TAG, "showMessage : " + row.mMsg);
-    			if( mChatFrag != null ){
-    				mChatFrag.appendChatMessage(row);
-    			}
+//    			if( mChatFrag != null ){
+//    				mChatFrag.appendChatMessage(row);
+//    			}
     		}
     	});
+    }
+
+    public static class PlaceholderFragment extends Fragment {
+
+        public PlaceholderFragment() {
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            Bundle bundle = this.getArguments();
+            if (bundle != null) {
+                int color = bundle.getInt(KEY_COLOR_CODE, COLOR_1);
+                switch (color) {
+                    case COLOR_1:
+                        rootView.setBackgroundColor(getResources().getColor(R.color.fbutton_color_green_sea));
+                        break;
+                    case COLOR_2:
+                        rootView.setBackgroundColor(getResources().getColor(R.color.fbutton_color_peter_river));
+                        break;
+                    case COLOR_3:
+                        rootView.setBackgroundColor(getResources().getColor(R.color.fbutton_color_alizarin));
+                        break;
+                    case COLOR_4:
+                        rootView.setBackgroundColor(getResources().getColor(R.color.fbutton_color_sun_flower));
+                        break;
+                    default:
+                        //Do nothing
+                }
+            }
+            return rootView;
+        }
     }
 }

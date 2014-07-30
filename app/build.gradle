@@ -20,4 +20,5 @@ android {
 
 dependencies {
     compile files('libs/libGoogleAnalytics.jar')
+    compile 'info.hoang8f:fbutton:1.0.5'
 }

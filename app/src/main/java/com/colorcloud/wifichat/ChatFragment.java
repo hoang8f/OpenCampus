@@ -78,7 +78,8 @@ public class ChatFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     	// inflate the fragment's res layout. 
-        View contentView = inflater.inflate(R.layout.chat_frag, container, false);  // no care whatever container is.
+        View contentView = inflater.inflate(R.layout.fragment_main, container, false);  // no care whatever container is.
+
         final EditText inputEditText = (EditText)contentView.findViewById(R.id.edit_input);
         final Button sendBtn = (Button)contentView.findViewById(R.id.btn_send);
         sendBtn.setOnClickListener(new View.OnClickListener() {
