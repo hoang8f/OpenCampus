@@ -1,10 +1,5 @@
 package com.colorcloud.wifichat;
 
-import static com.colorcloud.wifichat.Constants.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -19,6 +14,15 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import info.hoang8f.SoundManager;
+import info.hoang8f.android.segmented.SegmentedGroup;
+
+import static com.colorcloud.wifichat.Constants.MSG_PUSHOUT_DATA;
+import static com.colorcloud.wifichat.Constants.MSG_REGISTER_ACTIVITY;
+
 public class MainActivity extends Activity implements View.OnClickListener {
 	
 	public static final String TAG = "PTP_ChatAct";
@@ -29,6 +33,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public static final int COLOR_2 = 2;
     public static final int COLOR_3 = 3;
     public static final int COLOR_4 = 4;
+    public static final int MUSIC_CODE = 5;
 
     public static final int ANIMATION_POP_CENTER = 1;
     public static final int ANIMATION_LEFT_TO_RIGHT = 2;
@@ -38,6 +43,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
     Fragment fragment2;
     Fragment fragment3;
     Fragment fragment4;
+
+//    private static int currentColor = 1;
+    SegmentedGroup segmentedGroup;
 	
 	WiFiDirectApp mApp = null;
 //	ChatFragment mChatFrag = null;
@@ -51,6 +59,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.button2).setOnClickListener(this);
         findViewById(R.id.button3).setOnClickListener(this);
         findViewById(R.id.button4).setOnClickListener(this);
+        findViewById(R.id.button_music).setOnClickListener(this);
+        segmentedGroup = (SegmentedGroup) findViewById(R.id.segmented);
 
 		Intent i = getIntent();
 		String initMsg = i.getStringExtra("FIRST_MSG");
@@ -137,6 +147,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 showColor4();
                 sendColorMessage(COLOR_4);
                 break;
+            case R.id.button_music:
+                sendColorMessage(MUSIC_CODE);
+                playMusic();
             default:
                 break;
         }
@@ -293,12 +306,38 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         case COLOR_4:
                             showColor4();
                             break;
+                        case MUSIC_CODE:
+                            //Show code
+                            playMusic();
+                            break;
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
     		}
     	});
+    }
+
+    private void playMusic() {
+        switch (segmentedGroup.getCheckedRadioButtonId()) {
+            case R.id.position1:
+                SoundManager.getInstance().playDo(this, 500);
+                break;
+            case R.id.position2:
+                SoundManager.getInstance().playRe(this, 1000);
+                break;
+            case R.id.position3:
+                SoundManager.getInstance().playMi(this, 1500);
+                break;
+            case R.id.position4:
+                SoundManager.getInstance().playFa(this, 2000);
+                break;
+            case R.id.position5:
+                SoundManager.getInstance().playFa(this, 2500);
+                break;
+            default:
+                //Do nothing
+        }
     }
 
     public static class PlaceholderFragment extends Fragment {

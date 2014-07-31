@@ -339,7 +339,7 @@ public class ConnectionService extends Service implements ChannelListener, PeerL
     	MessageRow row = MessageRow.parseMessageRow(data);
     	// now first add to app json array
     	mApp.shiftInsertMessage(row);
-    	showNotification(row);
+//    	showNotification(row);
     	// add to activity if it is on focus.
     	showInActivity(row);
     	return data;

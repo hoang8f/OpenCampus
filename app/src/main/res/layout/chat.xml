@@ -1,54 +1,107 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:fbutton="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-tools:context=".MainActivity"
-tools:ignore="MergeRootFrame"
-android:layout_width="match_parent"
-android:layout_height="match_parent">
-
-<FrameLayout
-    android:id="@+id/container"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity"
+    tools:ignore="MergeRootFrame"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentTop="true"
-    android:layout_above="@+id/button_frame" />
+    android:layout_height="match_parent">
 
-<LinearLayout
-    android:id="@+id/button_frame"
-    android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:orientation="horizontal"
-    android:layout_alignParentBottom="true"
-    android:gravity="center_vertical">
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/button_frame" />
 
-    <info.hoang8f.widget.FButton
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        fbutton:buttonColor="@color/fbutton_color_green_sea"
-        style="@style/color_selection_button" />
+    <LinearLayout
+        android:id="@+id/button_frame"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:layout_above="@+id/segmented"
+        android:gravity="center_vertical">
 
-    <info.hoang8f.widget.FButton
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        fbutton:buttonColor="@color/fbutton_color_peter_river"
-        style="@style/color_selection_button" />
+        <info.hoang8f.widget.FButton
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            fbutton:buttonColor="@color/fbutton_color_green_sea"
+            style="@style/color_selection_button" />
 
-    <info.hoang8f.widget.FButton
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        fbutton:buttonColor="@color/fbutton_color_alizarin"
-        style="@style/color_selection_button" />
+        <info.hoang8f.widget.FButton
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            fbutton:buttonColor="@color/fbutton_color_peter_river"
+            style="@style/color_selection_button" />
 
-    <info.hoang8f.widget.FButton
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        fbutton:buttonColor="@color/fbutton_color_sun_flower"
-        style="@style/color_selection_button" />
+        <info.hoang8f.widget.FButton
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            fbutton:buttonColor="@color/fbutton_color_alizarin"
+            style="@style/color_selection_button" />
 
-</LinearLayout>
+        <info.hoang8f.widget.FButton
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            fbutton:buttonColor="@color/fbutton_color_sun_flower"
+            style="@style/color_selection_button" />
+
+        <info.hoang8f.widget.FButton
+            android:id="@+id/button_music"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:text="Music"
+            fbutton:buttonColor="@color/fbutton_color_amethyst"
+            style="@style/color_selection_button" />
+
+    </LinearLayout>
+
+    <info.hoang8f.android.segmented.SegmentedGroup
+        android:id="@+id/segmented"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/position1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="1"
+            style="@style/CustomStyle"/>
+
+        <RadioButton
+            android:id="@+id/position2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="2"
+            style="@style/CustomStyle" />
+
+        <RadioButton
+            android:id="@+id/position3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="3"
+            style="@style/CustomStyle" />
+
+        <RadioButton
+            android:id="@+id/position4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="4"
+            style="@style/CustomStyle" />
+
+        <RadioButton
+            android:id="@+id/position5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="5"
+            style="@style/CustomStyle" />
+    </info.hoang8f.android.segmented.SegmentedGroup>
+
 
 </RelativeLayout>

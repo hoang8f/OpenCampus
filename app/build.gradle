@@ -21,4 +21,5 @@ android {
 dependencies {
     compile files('libs/libGoogleAnalytics.jar')
     compile 'info.hoang8f:fbutton:1.0.5'
+    compile 'info.hoang8f:android-segmented:1.0.2'
 }

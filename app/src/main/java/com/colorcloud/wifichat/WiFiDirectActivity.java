@@ -22,6 +22,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.net.wifi.p2p.WifiP2pConfig;
 import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pDeviceList;
@@ -35,10 +36,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.colorcloud.wifichat.DeviceListFragment.DeviceActionListener;
 import com.colorcloud.wifichat.WiFiDirectApp.PTPLog;
+
+import info.hoang8f.SoundManager;
 
 /**
  * An activity that uses WiFi Direct APIs to discover and connect with available
@@ -60,6 +64,14 @@ public class WiFiDirectActivity extends Activity implements DeviceActionListener
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);   // statically draw two <fragment class=>
+
+        Button play = (Button) findViewById(R.id.play_btn);
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                SoundManager.getInstance().play(WiFiDirectActivity.this);
+            }
+        });
 
         mApp = (WiFiDirectApp)getApplication();
         
