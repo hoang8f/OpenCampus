@@ -154,6 +154,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.button_music:
                 sendColorMessage(MUSIC_CODE);
                 playMusic();
+                break;
             case R.id.button_reset:
                 showColor5(false);
                 sendColorMessage(COLOR_5);
