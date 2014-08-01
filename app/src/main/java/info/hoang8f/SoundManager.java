@@ -32,7 +32,7 @@ public class SoundManager {
 
     public void playDo(Context context, int delayTime) {
         if (mPlayerDo == null) {
-            mPlayerDo = MediaPlayer.create(context, R.raw.c4);
+            mPlayerDo = MediaPlayer.create(context, R.raw.c5);
             mPlayerDo.setLooping(true);
         }
         play(context, mPlayerDo, delayTime);
@@ -40,7 +40,7 @@ public class SoundManager {
 
     public void playRe(Context context, int delayTime) {
         if (mPlayerRe == null) {
-            mPlayerRe = MediaPlayer.create(context, R.raw.d4);
+            mPlayerRe = MediaPlayer.create(context, R.raw.d5);
             mPlayerRe.setLooping(true);
         }
         play(context, mPlayerRe, delayTime);
@@ -48,7 +48,7 @@ public class SoundManager {
 
     public void playMi(Context context, int delayTime) {
         if (mPlayerMi == null) {
-            mPlayerMi = MediaPlayer.create(context, R.raw.e4);
+            mPlayerMi = MediaPlayer.create(context, R.raw.e5);
             mPlayerMi.setLooping(true);
         }
         play(context, mPlayerMi, delayTime);
@@ -56,7 +56,7 @@ public class SoundManager {
 
     public void playFa(Context context, int delayTime) {
         if (mPlayerFa == null) {
-            mPlayerFa = MediaPlayer.create(context, R.raw.f4);
+            mPlayerFa = MediaPlayer.create(context, R.raw.f5);
             mPlayerFa.setLooping(true);
         }
         play(context, mPlayerFa, delayTime);
