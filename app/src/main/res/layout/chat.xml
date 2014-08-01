@@ -57,6 +57,13 @@
             fbutton:buttonColor="@color/fbutton_color_amethyst"
             style="@style/color_selection_button" />
 
+        <info.hoang8f.widget.FButton
+            android:id="@+id/button_reset"
+            android:layout_width="25dp"
+            android:layout_height="80dp"
+            fbutton:buttonColor="@color/fbutton_color_clouds"
+            style="@style/color_selection_button" />
+
     </LinearLayout>
 
     <info.hoang8f.android.segmented.SegmentedGroup
@@ -95,12 +102,6 @@
             android:text="4"
             style="@style/CustomStyle" />
 
-        <RadioButton
-            android:id="@+id/position5"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="5"
-            style="@style/CustomStyle" />
     </info.hoang8f.android.segmented.SegmentedGroup>
 
 

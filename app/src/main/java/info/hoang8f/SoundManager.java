@@ -12,7 +12,7 @@ import com.colorcloud.wifichat.R;
 public class SoundManager {
     private static SoundManager ourInstance = new SoundManager();
 
-    private int duration = 500;
+    private int duration = 800;
     Handler handler;
     MediaPlayer mPlayerDo;
     MediaPlayer mPlayerRe;
