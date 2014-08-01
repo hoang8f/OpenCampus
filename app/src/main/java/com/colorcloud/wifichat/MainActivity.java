@@ -36,7 +36,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public static final int COLOR_3 = 3;
     public static final int COLOR_4 = 4;
     public static final int COLOR_5 = 5;
-    public static final int MUSIC_CODE = 5;
+    public static final int MUSIC_CODE = 6;
 
     public static final int ANIMATION_POP_CENTER = 1;
     public static final int ANIMATION_LEFT_TO_RIGHT = 2;
@@ -336,6 +336,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             break;
                         case COLOR_4:
                             showColor4(false);
+                            break;
+                        case COLOR_5:
+                            showColor5(false);
                             break;
                         case MUSIC_CODE:
                             //Show code
