@@ -7,6 +7,7 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -354,21 +355,43 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private void playMusic() {
+        Handler handler = new Handler();
         switch (segmentedGroup.getCheckedRadioButtonId()) {
             case R.id.position1:
-                showColor1(true);
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        showColor1(true);
+                    }
+                }, 500);
+
                 SoundManager.getInstance().playDo(this, 500);
                 break;
             case R.id.position2:
-                showColor2(true);
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        showColor2(true);
+                    }
+                }, 1000);
                 SoundManager.getInstance().playRe(this, 1000);
                 break;
             case R.id.position3:
-                showColor3(true);
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        showColor3(true);
+                    }
+                }, 1500);
                 SoundManager.getInstance().playMi(this, 1500);
                 break;
             case R.id.position4:
-                showColor4(true);
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        showColor4(true);
+                    }
+                }, 2000);
                 SoundManager.getInstance().playFa(this, 2000);
                 break;
             default:
